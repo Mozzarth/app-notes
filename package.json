@@ -1,8 +1,7 @@
 {
-  "name": "notedev",
+  "name": "Notes",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "App para crear libretas y notas",
   "scripts": {
     "dev": "NODE_ENV=dev ts-node-dev  --cls --ignore-watch node_modules ./src/server/index.ts",
     "build": "npm run build:clean && npm run build:tsc && npm run build:dist",
