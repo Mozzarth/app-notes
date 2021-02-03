@@ -14,6 +14,7 @@ export class CreateUserMySqlRepository implements ICreateUserRepository {
             connection.query(statament, parameters, (err, results, fields) => {
                 if (results.affectedRows = 1) { console.log("Se ha insertado un usuario") }
                 if (err) { rej(err) }
+                connection.end()
                 res()
             })
         })

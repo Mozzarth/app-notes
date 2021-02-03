@@ -10,9 +10,11 @@ class ConnectionMySql implements SqlConnection {
 
     constructor() {
         const configConn: PoolConfig = {
-            connectionLimit: 10,
-            timezone: "-5000",
-            insecureAuth: true,
+            connectionLimit: 15, // Determina el limite de conexiones
+            queueLimit: 50, // Determina el limite de conexiones en cola antes de mandar un error
+            waitForConnections: true, // Permite conexiones en cola 
+            timezone: "-5000", // zona horaria
+            insecureAuth: true, // Permitir la conexión a instancias de MySQL que soliciten el método de autenticación antiguo
             host: CONFIG.DB_HOST,
             user: CONFIG.DB_USER,
             password: CONFIG.DB_PASS,
@@ -30,8 +32,6 @@ class ConnectionMySql implements SqlConnection {
             })
         })
     }
-
-
     close(): void {
         // Deberia der una promesa 
         // cierra todas las coexiones del pool
@@ -39,18 +39,19 @@ class ConnectionMySql implements SqlConnection {
     }
     private registerEvents() {
         this.connectionPool.on('acquire', function (connection) {
-            console.log('Connection %d acquired', connection.threadId);
+            console.log('Connection %d acquired || Conexion Adquirida', connection.threadId);
         });
-        this.connectionPool.on('connection', function (connection) {
-            // connection.query('SET SESSION auto_increment_increment=1')
-            console.log("New connection established")
-        });
-
         this.connectionPool.on('enqueue', function () {
             console.log('Waiting for available connection slot || Esperando por una conexión');
         });
+        this.connectionPool.on('connection', function (connection) {
+            // connection.query('SET SESSION auto_increment_increment=1')
+            console.log("New connection established  || Nueva conexión establecida")
+        });
+
         this.connectionPool.on('release', function (connection) {
-            console.log('Connection %d released || conexion liberada', connection.threadId);
+            console.log('Connection %d released || conexión liberada', connection.threadId);
+
         });
     }
 }

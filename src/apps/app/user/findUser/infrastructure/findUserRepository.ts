@@ -20,7 +20,6 @@ export class FindUserRepository implements IFindUserRepository {
                                   password
                                   FROM users where email = ?;`, [email],
                     (error, result: queryResponse[], field) => {
-                        console.log({ result })
                         if (error) { return rej(error) }
                         if (result[0] == undefined) { return res(result[0]) }
                         const user = new User(
@@ -29,6 +28,7 @@ export class FindUserRepository implements IFindUserRepository {
                                 email: new EmailAddres(result[0].email),
                                 password: result[0].password
                             })
+                        connection.end()
                         res(user)
                     })
             })
