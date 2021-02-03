@@ -1,6 +1,10 @@
-import { EmailUserNotifier } from "../../../Notification/application/welcomeUserNotifier";
+import { FindUserRepository as FindUserMySqlRepository } from "../../findUser/infrastructure/findUserRepository";
+import { NodeMailerProvider } from "../../../notification/infrastructure/implements/nodeMailer";
+import { CreateUserNoticationMailer } from "./notification/implements/createUserNotifier";
+import { CreateUserMySqlRepository } from "../infrastructure/createUserRepository";
+import { ICreateUserNotification } from "./notification/ICreateUserNotification";
 import { IFindUserRepository } from "../../findUser/domain/findUserRepository";
-import { EmailAddres } from "../../../Notification/domain/EmailAdress";
+import { EmailAddres } from "../../../shared/domain/value-object/EmailAdress";
 import { ICreateUserRepository } from "../domain/createUserRepository";
 import { User } from "../domain/User";
 import { IUserDto } from "./userDto";
@@ -9,18 +13,40 @@ export class CreateUserUseCase {
     constructor(
         private createUser: ICreateUserRepository,
         private findUser: IFindUserRepository,
-        private noticador: EmailUserNotifier
+        private notifier: ICreateUserNotification
     ) { }
 
-    async execute(user: IUserDto): Promise<void> {
-        const _user = new User(new EmailAddres(user.email), user.password)
-        await this.validExistsUser(_user.email.toString())
-        await this.createUser.handle(_user)
-        await this.noticador.send(_user.email)
+    async execute(user: IUserDto): Promise<User> {
+        try {
+            const _user = new User({
+                email: new EmailAddres(user.email),
+                password: user.password
+            })
+            await this.validateExistence(_user.email.toString())
+            await this.createUser.handle(_user)
+            await this.notifier.send(_user.email)
+            return new User({ id: _user.id, email: _user.email, password: "" })
+        } catch (error) { throw error }
     }
 
-    private async validExistsUser(email: string) {
-        const userFind = await this.findUser.handle(email)
-        if (userFind != undefined) { throw new Error(`This email already exists ${email}`) }
+    private async validateExistence(email: string) {
+        try {
+            const userFind = await this.findUser.handle(email)
+            if (userFind != undefined) { throw new Error(`This email already exists ${email}`) }
+            return
+        } catch (error) { throw error }
     }
 }
+
+const createUserRepository = new CreateUserMySqlRepository()
+const findUserRepository = new FindUserMySqlRepository()
+const mail = new CreateUserNoticationMailer(new NodeMailerProvider())
+
+const createUserUseCase = new CreateUserUseCase(
+    createUserRepository,
+    findUserRepository,
+    mail
+)
+
+export { createUserUseCase }
+

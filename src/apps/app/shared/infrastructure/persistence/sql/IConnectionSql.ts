@@ -1,3 +1,6 @@
+import mysql from 'mysql'
+
 export interface SqlConnection {
-    getConnection(): Promise<any>
+    getConnection(): Promise<mysql.Connection>
+    close(): void
 }

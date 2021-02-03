@@ -1,12 +1,13 @@
-import { Uuid } from "../../shared/domain/value-object/Uuid";
+import { Uuid } from "./Uuid";
 import { EmailAddres } from "./EmailAdress";
 
-type parameters {
+type parameters = {
     id?: Uuid
     from: EmailAddres,
     to: EmailAddres,
-    title: string,
-    body: string
+    asunto: string,
+    body: string,
+    html?: string
 }
 
 export class Email {
@@ -14,15 +15,17 @@ export class Email {
     readonly id: Uuid
     readonly from: EmailAddres
     readonly to: EmailAddres
-    readonly title: string
+    readonly asunto: string
     readonly body: string
+    readonly html?: string
 
     constructor(params: parameters) {
         this.id = params.id == undefined ? Uuid.random() : params.id
         this.from = params.from
         this.to = params.to
-        this.title = params.title
+        this.asunto = params.asunto
         this.body = params.body
+        this.html = params.html
     }
 
 }

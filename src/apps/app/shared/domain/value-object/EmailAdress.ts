@@ -1,24 +1,25 @@
-import { InvalidArgumentError } from "../../shared/domain/value-object/invalidArgumentError"
+import { InvalidArgumentError } from "./invalidArgumentError"
 
 
 // Value Object
 export class EmailAddres {
-    private readonly email: string
 
+    private readonly value: string
 
     constructor(email: string) {
         this.isValidEmail(email)
-        this.email = email.trim()
+        this.value = email.trim()
     }
     private isValidEmail(email: string) {
+        // TODO validar que el email sea valido 
         if (false) { throw new InvalidArgumentError(`Email is invalid ${email}`) }
     }
 
     public toEqual(email: string) {
-        return this.email == email.trim()
+        return this.value == email.trim()
     }
     public toString(): string {
-        return this.email
+        return this.value
     }
 
 }

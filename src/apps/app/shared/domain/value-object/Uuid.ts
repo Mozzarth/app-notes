@@ -3,11 +3,13 @@ import { v4, validate } from 'uuid'
 
 export class Uuid {
     public readonly value: string
+
     constructor(value: string) {
         this.isValid(value)
         this.value = value
     }
     static random(): Uuid {
+        console.log(this)
         return new Uuid(v4())
     }
 

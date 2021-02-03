@@ -15,9 +15,9 @@ app.use(helmet.xssFilter())
 app.use(helmet.hidePoweredBy())
 app.use(helmet.frameguard({ action: "deny" }))
 
-app.use(morgan("combined"))
+app.use(morgan("dev"))
 
-app.use("api/", appRouter)
+app.use("/api", appRouter)
 app.use(routerNotFound)
 app.use(handleError)
 
