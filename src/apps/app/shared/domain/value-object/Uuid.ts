@@ -9,7 +9,6 @@ export class Uuid {
         this.value = value
     }
     static random(): Uuid {
-        console.log(this)
         return new Uuid(v4())
     }
 

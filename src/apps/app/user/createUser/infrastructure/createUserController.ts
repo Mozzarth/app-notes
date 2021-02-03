@@ -11,9 +11,9 @@ class CreateUserController {
         try {
             const user: IUserDto = req.body
             const user_ = await this.createUSer.execute(user)
-            return res.status(200).json(user_)
+            return res.status(201).json(user_)
         } catch (error) {
-            return res.json(error.message)
+            return res.status(500).json(error.message)
         }
     }
 }
