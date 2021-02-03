@@ -4,7 +4,7 @@ import { EmailAddres } from "./EmailAdress";
 type parameters = {
     id?: Uuid
     from: EmailAddres,
-    to: EmailAddres,
+    to: EmailAddres[],
     asunto: string,
     body: string,
     html?: string
@@ -14,7 +14,7 @@ export class Email {
 
     readonly id: Uuid
     readonly from: EmailAddres
-    readonly to: EmailAddres
+    readonly to: EmailAddres[]
     readonly asunto: string
     readonly body: string
     readonly html?: string

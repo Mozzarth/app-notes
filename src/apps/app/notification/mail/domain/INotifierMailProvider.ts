@@ -1,4 +1,4 @@
-import { Email } from "../../shared/domain/value-object/Email";
+import { Email } from "../../../shared/domain/value-object/Email";
 
 
 export interface INotifierMailProvider {
