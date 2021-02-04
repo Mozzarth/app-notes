@@ -4,6 +4,6 @@ import { createUserController } from '../../app/user/createUser/infrastructure/c
 
 const userRouter = Router()
 
-userRouter.put("",createUserController.handle.bind(createUserController))
+userRouter.post("", createUserController.handle.bind(createUserController))
 
 export { userRouter }

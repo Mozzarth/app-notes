@@ -9,6 +9,7 @@ class CreateUserController {
 
     async handle(req: Request, res: Response, next: NextFunction) {
         try {
+            console.log(req.url)
             const user: IUserDto = req.body
             const user_ = await this.createUSer.execute(user)
             return res.status(201).json(user_)
