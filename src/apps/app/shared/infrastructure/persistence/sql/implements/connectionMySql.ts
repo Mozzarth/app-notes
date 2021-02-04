@@ -24,7 +24,7 @@ class ConnectionMySql implements SqlConnection {
         this.connectionPool = mysql.createPool(configConn)
         this.registerEvents()
     }
-    getConnection(): Promise<mysql.Connection> {
+   public getConnection(): Promise<mysql.Connection> {
         return new Promise((res, rej) => {
             this.connectionPool.getConnection((err, connection) => {
                 if (err) { rej(err) }
@@ -32,11 +32,13 @@ class ConnectionMySql implements SqlConnection {
             })
         })
     }
-    close(): void {
+   public    close(): void {
         // Deberia der una promesa 
         // cierra todas las coexiones del pool
         this.connectionPool.end()
     }
+
+
     private registerEvents() {
         this.connectionPool.on('acquire', function (connection) {
             console.log('Connection %d acquired || Conexion Adquirida', connection.threadId);
