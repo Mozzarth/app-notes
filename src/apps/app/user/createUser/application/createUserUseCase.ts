@@ -2,7 +2,7 @@ import { FindUserRepository as FindUserMySqlRepository } from '../../findUser/in
 import { NodeMailerProvider } from '../../../notification/mail/infrastructure/implements/nodeMailer';
 import { CreateUserNoticationMailer } from './notification/implements/createUserNotifier';
 import { CreateUserMySqlRepository } from '../infrastructure/createUserMySqlRepository';
-import { ICreateUserNotification } from './notification/ICreateUserNotification';
+import { ICreateUserNotification } from '../domain/ICreateUserNotification';
 import { IFindUserRepository } from '../../findUser/domain/findUserRepository';
 import { EmailAddres } from '../../../shared/domain/value-object/EmailAdress';
 import { ICreateUserRepository } from '../domain/createUserRepository';
@@ -48,10 +48,6 @@ const createUserRepository = new CreateUserMySqlRepository();
 const findUserRepository = new FindUserMySqlRepository();
 const mail = new CreateUserNoticationMailer(new NodeMailerProvider());
 
-const createUserUseCase = new CreateUserUseCase(
-  createUserRepository,
-  findUserRepository,
-  mail
-);
+const createUserUseCase = new CreateUserUseCase(createUserRepository, findUserRepository, mail);
 
 export { createUserUseCase };
