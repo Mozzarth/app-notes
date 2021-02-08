@@ -1,9 +1,10 @@
-import { routerNotFound } from '../middlewares'
-import { Router } from 'express'
-import {userRouter} from './user.routes'
+import { notebookRouter } from './notebook.routes';
+import { userRouter } from './user.routes';
+import { Router } from 'express';
 
-const appRouter = Router()
+const appRouter = Router();
 
-appRouter.use("/user", userRouter)
+appRouter.use('/user', userRouter);
+appRouter.use('/notebook', notebookRouter);
 
-export { appRouter }
+export { appRouter };

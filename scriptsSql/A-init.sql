@@ -12,7 +12,7 @@ create table if not exists users(
                    created datetime not null default now()
                    );
 create table if not exists notebooks( 
-						idNotebook binary(16) not null primary key,
+					              idNotebook binary(16) not null primary key,
                         idUser binary(16) not null,
                         title nvarchar(100) not null,
                         created datetime not null default now(),
