@@ -33,7 +33,7 @@ export class CreateUserUseCase {
 
   private async validateExistence(email: string) {
     try {
-      const userFind = await this.findUser.handle(email);
+      const userFind = await this.findUser.byEmail(email);
       if (userFind != undefined) {
         throw new Error(`This email already exists ${email}`);
       }

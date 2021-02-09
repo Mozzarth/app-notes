@@ -1,4 +1,4 @@
 export interface ICreateNoteBookDto {
-  idUser: string;
-  titleNotebook: string;
+  userId: string;
+  title: string;
 }

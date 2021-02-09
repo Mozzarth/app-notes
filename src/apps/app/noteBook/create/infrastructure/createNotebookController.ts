@@ -11,8 +11,12 @@ class CreateNotebookController {
   async handle(req: Request, res: Response, next: NextFunction) {
     try {
       const params: ICreateNoteBookDto = req.body;
-      await this.createNotebook.handle(params);
-      return res.status(201).send();
+      const notebook = await this.createNotebook.handle(params);
+      return res.status(201).json({
+        userId: notebook.userId.value,
+        id: notebook.id.value,
+        title: notebook.title,
+      });
     } catch (error) {
       next(error);
     }

@@ -7,12 +7,13 @@ import { Notebook } from '../domain/notebook';
 export class CreateNoteBookUseCase {
   constructor(private createNotebook: ICreateNoteBookRepository, private userFind: IFindUserRepository) {}
 
-  async handle(params: ICreateNoteBookDto) {
+  async handle(params: ICreateNoteBookDto): Promise<Notebook> {
     try {
-      const userUuid = new Uuid(params.idUser);
+      const userUuid = new Uuid(params.userId);
       await this.validateExistence(userUuid);
-      const notebook = new Notebook({ title: params.titleNotebook, userUuid });
+      const notebook = new Notebook({ title: params.title, userUuid });
       await this.createNotebook.create(notebook);
+      return notebook;
     } catch (error) {
       throw error;
     }
@@ -21,7 +22,6 @@ export class CreateNoteBookUseCase {
   private async validateExistence(id: Uuid) {
     try {
       const userFind = await this.userFind.byId(id);
-      console.log({ userFind });
       if (userFind == undefined) {
         throw new Error(`This user not exists`);
       }
