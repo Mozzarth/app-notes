@@ -8,7 +8,7 @@ class ActiveUserController {
   async handle(req: Request, res: Response, next: NextFunction) {
     try {
       const idUser: string = req.params.idUser;
-      console.log(req.protocol, req.get("host"),req.originalUrl)
+      // console.log(req.protocol, req.get("host"),req.originalUrl)
       await this.activeUser.execute(idUser);
       return res.status(202).json();
     } catch (error) {

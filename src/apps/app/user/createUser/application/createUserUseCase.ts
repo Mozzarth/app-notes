@@ -1,5 +1,5 @@
-import { FindUserRepository as FindUserMySqlRepository } from '../../findUser/infrastructure/findUserRepository';
-import { NodeMailerProvider } from '../../../notification/mail/infrastructure/implements/nodeMailer';
+import { FindUserMySqlRepository } from '../../findUser/infrastructure/findUserRepository';
+import { NodeMailerProvider } from '../../../notification/mail/infrastructure/nodeMailer';
 import { CreateUserNoticationMailer } from './notification/implements/createUserNotifier';
 import { CreateUserMySqlRepository } from '../infrastructure/createUserMySqlRepository';
 import { ICreateUserNotification } from '../domain/ICreateUserNotification';
@@ -16,7 +16,7 @@ export class CreateUserUseCase {
     private notifier: ICreateUserNotification
   ) {}
 
-  async execute(user: IUserDto): Promise<User> {
+  async execute(user: IUserDto): Promise<void> {
     try {
       const _user = new User({
         email: new EmailAddres(user.email),
@@ -25,7 +25,7 @@ export class CreateUserUseCase {
       await this.validateExistence(_user.email.toString());
       await this.createUser.handle(_user);
       await this.notifier.send(_user.email);
-      return new User({ id: _user.id, email: _user.email, password: '' });
+      return;
     } catch (error) {
       throw error;
     }
@@ -33,7 +33,7 @@ export class CreateUserUseCase {
 
   private async validateExistence(email: string) {
     try {
-      const userFind = await this.findUser.byEmail(email);
+      const userFind = await this.findUser.byEmail(new EmailAddres(email));
       if (userFind != undefined) {
         throw new Error(`This email already exists ${email}`);
       }

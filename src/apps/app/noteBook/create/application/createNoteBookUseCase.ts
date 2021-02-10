@@ -3,13 +3,18 @@ import { ICreateNoteBookRepository } from '../domain/createNoteBookRepository';
 import { Uuid } from '../../../shared/domain/value-object/Uuid';
 import { ICreateNoteBookDto } from './createNoteBookDto';
 import { Notebook } from '../domain/notebook';
+import { IGuardAPP } from '../../../shared/domain/IGuardApp';
 
 export class CreateNoteBookUseCase {
-  constructor(private createNotebook: ICreateNoteBookRepository, private userFind: IFindUserRepository) {}
+  constructor(
+    private createNotebook: ICreateNoteBookRepository,
+    private userFind: IFindUserRepository,
+    private validkey: IGuardAPP
+  ) {}
 
   async handle(params: ICreateNoteBookDto): Promise<Notebook> {
     try {
-      const userUuid = new Uuid(params.userId);
+      const userUuid = await this.validkey.getDecodedKey(params.key);
       await this.validateExistence(userUuid);
       const notebook = new Notebook({ title: params.title, userUuid });
       await this.createNotebook.create(notebook);

@@ -1,5 +1,5 @@
 export interface IFindByIdDto {
-  idUser: string;
+  key: string;
   page?: number;
   limit?: number;
 }

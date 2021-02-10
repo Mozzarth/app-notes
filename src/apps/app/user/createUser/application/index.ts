@@ -1,12 +1,12 @@
-import { NodeMailerProvider } from '../../../notification/mail/infrastructure/implements/nodeMailer';
+import { NodeMailerProvider } from '../../../notification/mail/infrastructure/nodeMailer';
 import { CreateUserNoticationMailer } from './notification/implements/createUserNotifier';
-import { FindUserRepository } from '../../findUser/infrastructure/findUserRepository';
+import { FindUserMySqlRepository } from '../../findUser/infrastructure/findUserRepository';
 import { CreateUserMySqlRepository } from '../infrastructure/createUserMySqlRepository';
 import { CreateUserUseCase } from './createUserUseCase';
 
 const createUser = new CreateUserUseCase(
   new CreateUserMySqlRepository(),
-  new FindUserRepository(),
+  new FindUserMySqlRepository(),
   new CreateUserNoticationMailer(new NodeMailerProvider())
 );
 

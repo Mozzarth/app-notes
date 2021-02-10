@@ -1,6 +1,6 @@
 import { validRouterExpressValidator } from '../shared';
-import { param } from 'express-validator';
+import { query } from 'express-validator';
 
 export function findByIdUserMid() {
-  return [param('idUser').isUUID(4).exists(), validRouterExpressValidator];
+  return [query('limit').optional().isInt(), query('page').optional().isInt(), validRouterExpressValidator];
 }

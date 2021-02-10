@@ -7,11 +7,11 @@ class FindNotebooksController {
 
   async byId(req: Request, res: Response, next: NextFunction) {
     try {
-      const idUser: string = 'a9ed25e5-f608-4c55-a2d1-169aad6bd0ed';
-      // const idUser: string = req.params.idUser
       const limit: number = req.query.limit as any;
       const page: number = req.query.page as any;
-      const notebooks = await this.findUser.byIdUSer({ idUser, limit, page });
+      console.log(req.query);
+      const key = req.headers.authorization as string;
+      const notebooks = await this.findUser.byIdUSer({ key, limit, page });
       return res.send(notebooks);
     } catch (error) {
       next(error);

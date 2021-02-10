@@ -8,11 +8,9 @@ class CreateUserController {
 
   async handle(req: Request, res: Response, next: NextFunction) {
     try {
-      console.log(req.url);
       const user: IUserDto = req.body;
-      const user_ = await this.createUser.execute(user);
-      const response = { id: user_.id.value, email: user_.email.toString() };
-      return res.status(201).json(response);
+      await this.createUser.execute(user);
+      return res.status(201).send('User created');
     } catch (error) {
       next(error);
     }

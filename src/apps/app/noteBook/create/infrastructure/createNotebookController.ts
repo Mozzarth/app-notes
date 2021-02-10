@@ -10,11 +10,11 @@ class CreateNotebookController {
   }
   async handle(req: Request, res: Response, next: NextFunction) {
     try {
-      const params: ICreateNoteBookDto = req.body;
+      const key = req.headers.authorization as string;
+      const params: ICreateNoteBookDto = { title: req.body.title, key };
       const notebook = await this.createNotebook.handle(params);
       return res.status(201).json({
-        userId: notebook.userId.value,
-        id: notebook.id.value,
+        idNotebook: notebook.idNotebook.value,
         title: notebook.title,
       });
     } catch (error) {

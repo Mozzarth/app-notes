@@ -10,7 +10,7 @@ export class CreateNotebookMysqlRepository implements ICreateNoteBookRepository 
                            insert into 
                            notebooks(idNotebook,idUser,title) 
                            values(UUID_TO_BIN(?),UUID_TO_BIN(?),?)`;
-      const parameters = [notebook.id.value, notebook.userId.value, notebook.title];
+      const parameters = [notebook.idNotebook.value, notebook.idUser.value, notebook.title];
       return new Promise((res, rej) => {
         connection.query(statament, parameters, (err, results, fields) => {
           if (err) {
