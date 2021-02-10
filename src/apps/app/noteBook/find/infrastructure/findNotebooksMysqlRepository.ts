@@ -1,5 +1,5 @@
 import sql from '../../../shared/infrastructure/persistence/sql/implements/connectionMySql';
-import { IFindNoteBookRepository } from './../domain/findNotebook';
+import { IFindNoteBookRepository } from '../domain/findNotebook';
 import { Uuid } from '../../../shared/domain/value-object/Uuid';
 import { Notebook } from '../../create/domain/notebook';
 

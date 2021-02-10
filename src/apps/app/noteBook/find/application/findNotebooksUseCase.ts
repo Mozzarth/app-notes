@@ -1,4 +1,4 @@
-import { IFindNoteBookRepository } from './../domain/findNotebook';
+import { IFindNoteBookRepository } from '../domain/findNotebook';
 import { Uuid } from '../../../shared/domain/value-object/Uuid';
 import { IFindByIdDto } from './findNotebooksDto';
 import { IGuardAPP } from '../../../shared/domain/IGuardApp';

@@ -1,5 +1,5 @@
 import sql from '../../../shared/infrastructure/persistence/sql/implements/connectionMySql';
-import { ICreateNoteBookRepository } from './../domain/createNoteBookRepository';
+import { ICreateNoteBookRepository } from '../domain/createNoteBookRepository';
 import { Notebook } from '../domain/notebook';
 
 export class CreateNotebookMysqlRepository implements ICreateNoteBookRepository {

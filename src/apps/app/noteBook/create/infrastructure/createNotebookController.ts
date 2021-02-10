@@ -1,4 +1,4 @@
-import { CreateNoteBookUseCase } from './../application/createNoteBookUseCase';
+import { CreateNoteBookUseCase } from '../application/createNoteBookUseCase';
 import { ICreateNoteBookDto } from '../application/createNoteBookDto';
 import { NextFunction, Request, Response } from 'express';
 import { createNotebook } from '../application';

@@ -1,5 +1,5 @@
 import { IFindUserRepository } from '../../../user/findUser/domain/findUserRepository';
-import { IFindNoteBookRepository } from '../../../noteBook/find/domain/findNotebook';
+import { IFindNoteBookRepository } from '../../../notebook/find/domain/findNotebook';
 import { ICreateNoteRepository } from '../domain/createNoteRepository';
 import { Uuid } from '../../../shared/domain/value-object/Uuid';
 import { IGuardAPP } from '../../../shared/domain/IGuardApp';

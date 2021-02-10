@@ -1,4 +1,4 @@
-import { IFindUserRepository } from './../../../user/findUser/domain/findUserRepository';
+import { IFindUserRepository } from '../../../user/findUser/domain/findUserRepository';
 import { ICreateNoteBookRepository } from '../domain/createNoteBookRepository';
 import { Uuid } from '../../../shared/domain/value-object/Uuid';
 import { ICreateNoteBookDto } from './createNoteBookDto';

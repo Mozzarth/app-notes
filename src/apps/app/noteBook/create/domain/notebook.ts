@@ -1,4 +1,4 @@
-import { Uuid } from './../../../shared/domain/value-object/Uuid';
+import { Uuid } from '../../../shared/domain/value-object/Uuid';
 
 type params = { id?: Uuid; title: string; userUuid: Uuid };
 

@@ -1,4 +1,4 @@
-import { FindNoteBooksMysqlRepository } from '../../../noteBook/find/infrastructure/findNotebooksMysqlRepository';
+import { FindNoteBooksMysqlRepository } from '../../../notebook/find/infrastructure/findNotebooksMysqlRepository';
 import { FindUserMySqlRepository } from '../../../user/findUser/infrastructure/findUserRepository';
 import { CreateNoteMysqlRepository } from '../infrastructure/createNoteMysqlRepository';
 import { GuardAppJwt } from '../../../shared/infrastructure/guard/guardJwt.midd';
