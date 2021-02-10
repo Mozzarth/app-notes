@@ -9,7 +9,6 @@ class FindNotebooksController {
     try {
       const limit: number = req.query.limit as any;
       const page: number = req.query.page as any;
-      console.log(req.query);
       const key = req.headers.authorization as string;
       const notebooks = await this.findUser.byIdUSer({ key, limit, page });
       return res.send(notebooks);

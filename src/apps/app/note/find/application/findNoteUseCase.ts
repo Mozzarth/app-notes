@@ -1,15 +1,16 @@
-import { IFindNoteBookRepository } from '../domain/findNotebook';
 import { IGuardAPP } from '../../../shared/domain/IGuardApp';
-import { IFindByIdDto } from './findNotebooksDto';
+import { IFindNoteRepository } from './../domain/findNoteRespository';
+import { IFindNoteDto } from './findNoteDto';
 
-export class FindNotebooksUseCase {
-  constructor(private findNotebooksRepo: IFindNoteBookRepository, private validkey: IGuardAPP) {}
+export class FindNoteUseCase {
+  constructor(private findNote: IFindNoteRepository, private validkey: IGuardAPP) {}
 
-  async byIdUSer(params: IFindByIdDto) {
+  async handle(params: IFindNoteDto) {
     try {
       const idUser = await this.validkey.getDecodedKey(params.key);
       const paginado = this.getPaginado(params.page, params.limit);
-      return this.findNotebooksRepo.byIdUser(idUser, paginado.offset, paginado.limit);
+      const notes = await this.findNote.byIdUser(idUser, paginado.offset, paginado.limit);
+      return notes;
     } catch (error) {
       throw error;
     }
