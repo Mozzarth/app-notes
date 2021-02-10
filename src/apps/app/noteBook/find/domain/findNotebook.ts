@@ -3,4 +3,5 @@ import { Notebook } from '../../create/domain/notebook';
 
 export interface IFindNoteBookRepository {
   byIdUser(idUser: Uuid, offset: number, limit: number): Promise<Notebook[]>;
+  byId(idUser: Uuid, idNotebook: Uuid): Promise<Notebook | undefined>;
 }
