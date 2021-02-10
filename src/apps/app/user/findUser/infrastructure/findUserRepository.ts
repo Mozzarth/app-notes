@@ -13,11 +13,11 @@ export class FindUserRepository implements IFindUserRepository {
       return new Promise((res, rej) => {
         connection.query(
           `SELECT
-                                  BIN_TO_UUID(idUSer) as idUSer,
-                                  email,
-                                  password
-                                  FROM users 
-                                  where idUser = UUID_TO_BIN(?);`,
+            BIN_TO_UUID(idUSer) as idUSer,
+            email,
+            password
+           FROM users 
+           where idUser = UUID_TO_BIN(?);`,
           [id.value],
           (error, result: queryResponse[], field) => {
             if (error) {
