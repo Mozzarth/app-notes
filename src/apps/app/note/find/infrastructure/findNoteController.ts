@@ -10,8 +10,8 @@ class FindNoteController {
       const limit: number = req.query.limit as any;
       const page: number = req.query.page as any;
       const key = req.headers.authorization as string;
-      const result = await this.findNoteUseCase.all({ key, limit, page });
-      return res.status(200).json(result);
+      const notes = await this.findNoteUseCase.all({ key, limit, page });
+      return res.status(notes == undefined ? 204 : 200).json(notes);
     } catch (error) {
       next(error);
     }
@@ -20,8 +20,8 @@ class FindNoteController {
     try {
       const key = req.headers.authorization as string;
       const idNotebook = req.params.idNotebook;
-      const result = await this.findNoteUseCase.byIdNotebook({ key, idNotebook });
-      return res.status(200).json(result);
+      const note = await this.findNoteUseCase.byIdNotebook({ key, idNotebook });
+      return res.status(note == undefined ? 204 : 200).json(note);
     } catch (error) {
       next(error);
     }
