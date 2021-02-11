@@ -16,7 +16,7 @@ export class CreateNoteBookUseCase {
     try {
       const userUuid = await this.validkey.getDecodedKey(params.key);
       await this.validateExistence(userUuid);
-      const notebook = new Notebook({ title: params.title, userUuid });
+      const notebook = new Notebook({ title: params.title, userUuid, created: new Date() });
       await this.createNotebook.create(notebook);
       return notebook;
     } catch (error) {

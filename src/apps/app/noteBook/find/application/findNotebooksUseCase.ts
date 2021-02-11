@@ -9,7 +9,7 @@ export class FindNotebooksUseCase {
     try {
       const idUser = await this.validkey.getDecodedKey(params.key);
       const paginado = this.getPaginado(params.page, params.limit);
-      return this.findNotebooksRepo.byIdUser(idUser, paginado.offset, paginado.limit);
+      return this.findNotebooksRepo.all(idUser, paginado.offset, paginado.limit);
     } catch (error) {
       throw error;
     }

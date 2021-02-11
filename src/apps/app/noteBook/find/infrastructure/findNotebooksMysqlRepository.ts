@@ -4,27 +4,38 @@ import { Uuid } from '../../../shared/domain/value-object/Uuid';
 import { Notebook } from '../../create/domain/notebook';
 
 export class FindNoteBooksMysqlRepository implements IFindNoteBookRepository {
-  async byId(idUser: Uuid, idNotebook: Uuid): Promise<Notebook | undefined> {
+  async byIdNotebook(idUser: Uuid, idNotebook: Uuid): Promise<Notebook | undefined> {
     const connection = await sql.getConnection();
     try {
-      const parameters = [idUser.value, idNotebook.value];
+      const parameters = [idNotebook.value, idUser.value];
       const statament = `
             select 
-	            BIN_TO_UUID(idNotebook) as idNotebook,
-                BIN_TO_UUID(idUSer) as idUser,
-                title,
-                created,
-                dateUpdate
-            from notebooks
-            where idUser = UUID_TO_BIN(?)
-            and idNotebook = UUID_TO_BIN(?)
-            AND trashed = 0;`;
+	            BIN_TO_UUID(nb.idNotebook) as idNotebook,
+	            BIN_TO_UUID(nb.idUSer) as idUser,
+	            nb.title,
+	            nb.created,
+              nb.dateUpdate
+            from notebooks nb join 
+            users u on u.idUser = nb.idUser
+	            and nb.idNotebook = UUID_TO_BIN(?)
+	            and nb.idUser = UUID_TO_BIN(?)
+	            and nb.trashed = 0;`;
       return new Promise((res, rej) => {
         connection.query(statament, parameters, (err, results, fields) => {
           if (err) {
             rej(err);
           }
-          res(results);
+          const netebook = results.map(
+            (value: any) =>
+              new Notebook({
+                id: value.idNotebook,
+                title: value.title,
+                userUuid: value.idUser,
+                created: value.created,
+                dateUpdate: value.dateUpdate,
+              })
+          );
+          res(netebook.length == 0 ? undefined : netebook[0]);
         });
       });
     } catch (error) {
@@ -33,27 +44,38 @@ export class FindNoteBooksMysqlRepository implements IFindNoteBookRepository {
       connection.end();
     }
   }
-  async byIdUser(idUser: Uuid, page: number, limit: number): Promise<Notebook[]> {
+  async all(idUser: Uuid, page: number, limit: number): Promise<Notebook[]> {
     const connection = await sql.getConnection();
     try {
       const parameters = [idUser.value, Number(limit), Number(page)];
       const statament = `
-            select 
-	            BIN_TO_UUID(idNotebook) as idNotebook,
-                BIN_TO_UUID(idUSer) as idUser,
-                title,
-                created,
-                dateUpdate
-            from notebooks
-            where idUser = UUID_TO_BIN(?) 
-            AND trashed = 0
-            limit ? offset ?;`;
+           select 
+	          BIN_TO_UUID(nb.idNotebook) as idNotebook,
+	          BIN_TO_UUID(nb.idUSer) as idUser,
+	          nb.title,
+	          nb.created,
+	          nb.dateUpdate
+          from notebooks nb join
+          	 users u on u.idUser = nb.idUser
+               and nb.idUser = UUID_TO_BIN(?) 
+          	 and nb.trashed = 0
+          limit ? offset ?;`;
       return new Promise((res, rej) => {
         connection.query(statament, parameters, (err, results, fields) => {
           if (err) {
             rej(err);
           }
-          res(results);
+          const netebooks = results.map(
+            (value: any) =>
+              new Notebook({
+                id: value.idNotebook,
+                title: value.title,
+                userUuid: value.idUser,
+                created: value.created,
+                dateUpdate: value.dateUpdate,
+              })
+          );
+          res(netebooks.length == 0 ? undefined : netebooks);
         });
       });
     } catch (error) {
