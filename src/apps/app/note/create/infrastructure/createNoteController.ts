@@ -5,7 +5,7 @@ import { createNoteUseCase } from '../application';
 class CreateNoteController {
   constructor(private createNoteUseCase: CreateNoteUseCase) {}
 
-  async handle(req: Request, res: Response, next: NextFunction) {
+  async create(req: Request, res: Response, next: NextFunction) {
     try {
       const key = req.headers.authorization as string;
       const note = req.body.note;

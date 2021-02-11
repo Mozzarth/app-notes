@@ -58,7 +58,7 @@ export class FindNoteBooksMysqlRepository implements IFindNoteBookRepository {
           from notebooks nb join
           	 users u on u.idUser = nb.idUser
                and nb.idUser = UUID_TO_BIN(?) 
-          	 and nb.trashed = 0
+          	   and nb.trashed = 0
           limit ? offset ?;`;
       return new Promise((res, rej) => {
         connection.query(statament, parameters, (err, results, fields) => {

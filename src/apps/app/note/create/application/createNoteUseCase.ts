@@ -21,7 +21,7 @@ export class CreateNoteUseCase {
 
       const validations = [this.validateExistenceUser(userUuid), this.validExistenceNotebookUser(userUuid, idNotebook)];
       await Promise.all(validations);
-      const note = new Note({ note: params.note });
+      const note = new Note({ note: params.note, created: new Date() });
       return this.createNote.create(note, idNotebook);
     } catch (error) {
       throw error;
@@ -41,7 +41,7 @@ export class CreateNoteUseCase {
   }
   private async validExistenceNotebookUser(idUser: Uuid, idNotebook: Uuid) {
     try {
-      const notebook = await this.notebookFind.byId(idUser, idNotebook);
+      const notebook = await this.notebookFind.byIdNotebook(idUser, idNotebook);
       if (notebook == undefined) {
         throw new Error(`This notebook not exists`);
       }
