@@ -1,5 +1,3 @@
-import { Uuid } from '../../../shared/domain/value-object/Uuid';
-
 export interface IFindNoteAllDto {
   key: string;
   page?: number;

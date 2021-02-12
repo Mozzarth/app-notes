@@ -1,4 +1,4 @@
-import { header, param, query } from 'express-validator';
+import { param, query } from 'express-validator';
 import { validRouterExpressValidator } from './../shared/expressValidatorValidRoute';
 
 export function findNoteAllMidd() {

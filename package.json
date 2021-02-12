@@ -1,5 +1,5 @@
 {
-  "name": "Notes",
+  "name": "notes",
   "version": "1.0.0",
   "description": "App para crear libretas y notas",
   "scripts": {
@@ -7,7 +7,7 @@
     "build": "npm run build:clean && npm run build:tsc && npm run build:dist",
     "build:clean": "rm -r dist; exit 0",
     "build:tsc": "tsc -p tsconfig.prod.json",
-    "build:dist": "copy 'src/**/*.{json,yaml,html,png,env}' dist/src"
+    "build:dist": "copy 'src/**/*.{json,yaml,html,png,env}' dist/"
   },
   "author": "Mozzarth",
   "license": "ISC",
