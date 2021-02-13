@@ -1,27 +1,34 @@
-import { IFindNoteAllDto, IFindNoteByIdNotebook } from './findNoteDto';
+import { IFindNoteAllDto, IFindNoteByIdNote, IFindNoteByIdNotebook } from './findNoteDto';
 import { IFindNoteRepository } from './../domain/findNoteRespository';
 import { Uuid } from '../../../shared/domain/value-object/Uuid';
 import { IGuardAPP } from '../../../shared/domain/IGuardApp';
 
 export class FindNoteUseCase {
-  constructor(private findNote: IFindNoteRepository, private validkey: IGuardAPP) {}
+  constructor(private findNote: IFindNoteRepository, private guardAppJwt: IGuardAPP) {}
 
   async all(params: IFindNoteAllDto) {
     try {
-      const idUser = await this.validkey.getDecodedKey(params.key);
+      const idUser = await this.guardAppJwt.getDecodedKey(params.key);
       const paginado = this.getPaginado(params.page, params.limit);
-      const notes = await this.findNote.all(idUser, paginado.offset, paginado.limit);
-      return notes;
+      return await this.findNote.all(idUser, paginado.offset, paginado.limit);
     } catch (error) {
       throw error;
     }
   }
   async byIdNotebook(params: IFindNoteByIdNotebook) {
     try {
-      const idUser = await this.validkey.getDecodedKey(params.key);
+      const idUser = await this.guardAppJwt.getDecodedKey(params.key);
       const idNotebook = new Uuid(params.idNotebook);
-      const notes = await this.findNote.byId(idUser, idNotebook);
-      return notes;
+      return this.findNote.byIdNotebook(idUser, idNotebook);
+    } catch (error) {
+      throw error;
+    }
+  }
+  async byId(params: IFindNoteByIdNote) {
+    try {
+      const idUser = await this.guardAppJwt.getDecodedKey(params.key);
+      const idNote = new Uuid(params.idNote);
+      return this.findNote.byId(idUser, idNote);
     } catch (error) {
       throw error;
     }

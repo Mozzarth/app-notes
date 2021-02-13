@@ -20,7 +20,17 @@ class FindNoteController {
     try {
       const key = req.headers.authorization as string;
       const idNotebook = req.params.idNotebook;
-      const note = await this.findNoteUseCase.byIdNotebook({ key, idNotebook });
+      const notes = await this.findNoteUseCase.byIdNotebook({ key, idNotebook });
+      return res.status(notes == undefined ? 204 : 200).json(notes);
+    } catch (error) {
+      next(error);
+    }
+  }
+  public async byIdNote(req: Request, res: Response, next: NextFunction) {
+    try {
+      const key = req.headers.authorization as string;
+      const idNote = req.params.idNote;
+      const note = await this.findNoteUseCase.byId({ key, idNote });
       return res.status(note == undefined ? 204 : 200).json(note);
     } catch (error) {
       next(error);

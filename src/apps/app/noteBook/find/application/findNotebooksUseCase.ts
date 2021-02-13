@@ -3,11 +3,11 @@ import { IGuardAPP } from '../../../shared/domain/IGuardApp';
 import { IFindByIdDto } from './findNotebooksDto';
 
 export class FindNotebooksUseCase {
-  constructor(private findNotebooksRepo: IFindNoteBookRepository, private validkey: IGuardAPP) {}
+  constructor(private findNotebooksRepo: IFindNoteBookRepository, private guardAppJwt: IGuardAPP) {}
 
   async byIdUSer(params: IFindByIdDto) {
     try {
-      const idUser = await this.validkey.getDecodedKey(params.key);
+      const idUser = await this.guardAppJwt.getDecodedKey(params.key);
       const paginado = this.getPaginado(params.page, params.limit);
       return this.findNotebooksRepo.all(idUser, paginado.offset, paginado.limit);
     } catch (error) {

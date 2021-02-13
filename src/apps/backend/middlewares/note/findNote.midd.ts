@@ -8,3 +8,6 @@ export function findNoteAllMidd() {
 export function findNoteByIdNotebook() {
   return [param('idNotebook').exists().isUUID(), validRouterExpressValidator];
 }
+export function findNoteByIdNote() {
+  return [param('idNote').exists().isUUID(), validRouterExpressValidator];
+}

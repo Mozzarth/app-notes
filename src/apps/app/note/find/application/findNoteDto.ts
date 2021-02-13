@@ -8,3 +8,7 @@ export interface IFindNoteByIdNotebook {
   key: string;
   idNotebook: string;
 }
+export interface IFindNoteByIdNote {
+  key: string;
+  idNote: string;
+}

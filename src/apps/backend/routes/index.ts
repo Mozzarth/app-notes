@@ -12,6 +12,6 @@ appRouter.use('/user', userRouter);
 appRouter.use(keyValidate());
 
 appRouter.use('/notebook', notebookRouter);
-appRouter.use('/note', noteRouter);
+appRouter.use(noteRouter);
 
 export { appRouter };
