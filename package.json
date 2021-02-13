@@ -1,16 +1,15 @@
 {
-  "name": "notes",
+  "name": "notedev",
   "version": "1.0.0",
-  "description": "App para crear libretas y notas",
+  "description": "",
+  "main": "index.js",
   "scripts": {
     "dev": "nodemon -L",
     "build": "npm run build:clean && npm run build:tsc && npm run build:dist",
     "build:clean": "rm -r dist; exit 0",
     "build:tsc": "tsc -p tsconfig.prod.json",
-    "build:dist": "copy 'src/**/*.{json,yaml,html,png,env}' dist/"
+    "build:dist": "copy 'src/**/*.{json,yaml,html,png,env}' dist/src"
   },
-  "author": "Mozzarth",
-  "license": "ISC",
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
@@ -43,5 +42,15 @@
     "hooks": {
       "pre-commit": "pretty-quick --staged"
     }
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mozzarth/Note.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mozzarth/Note/issues"
+  },
+  "homepage": "https://github.com/Mozzarth/Note#readme"
 }
