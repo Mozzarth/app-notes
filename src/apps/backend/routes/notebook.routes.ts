@@ -8,10 +8,17 @@ import { Router } from 'express';
 
 const notebookRouter = Router();
 
-notebookRouter.post('', createNotebookMid(), createNotebookController.handle.bind(createNotebookController));
-notebookRouter.delete('/:idNotebook', deleteNotebook(), deleteNotebookController.handle.bind(deleteNotebookController));
-
-notebookRouter.get('/', findAllMidd(), findNotebookController.all.bind(findNotebookController));
-notebookRouter.get('/:idNotebook', findById(), findNotebookController.byIdNotebook.bind(findNotebookController));
+notebookRouter.post('/notebook', createNotebookMid(), createNotebookController.handle.bind(createNotebookController));
+notebookRouter.get('/notebooks', findAllMidd(), findNotebookController.all.bind(findNotebookController));
+notebookRouter.get(
+  '/notebook/:idNotebook',
+  findById(),
+  findNotebookController.byIdNotebook.bind(findNotebookController)
+);
+notebookRouter.delete(
+  '/notebook/:idNotebook',
+  deleteNotebook(),
+  deleteNotebookController.handle.bind(deleteNotebookController)
+);
 
 export { notebookRouter };

@@ -6,6 +6,6 @@ import { createUserMidd } from '../middlewares/user/createUser.midd';
 const userRouter = Router();
 
 userRouter.post('', createUserMidd(), createUserController.handle.bind(createUserController));
-userRouter.put('/active/:idUser', activeUserController.handle.bind(activeUserController));
+userRouter.put('active/:idUser', activeUserController.handle.bind(activeUserController));
 
 export { userRouter };

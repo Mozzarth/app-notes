@@ -10,8 +10,7 @@ const appRouter = Router();
 appRouter.use('/login', authRouter);
 appRouter.use('/user', userRouter);
 appRouter.use(keyValidate());
-
-appRouter.use('/notebook', notebookRouter);
+appRouter.use(notebookRouter);
 appRouter.use(noteRouter);
 
 export { appRouter };
