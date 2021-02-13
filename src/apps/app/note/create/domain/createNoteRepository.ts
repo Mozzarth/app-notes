@@ -1,6 +1,5 @@
-import { Uuid } from '../../../shared/domain/value-object/Uuid';
-import { Note } from './note';
+import { Note } from '../../shared/domain/note';
 
 export interface ICreateNoteRepository {
-  create(note: Note, idNotebook: Uuid): Promise<Note>;
+  create(note: Note): Promise<Note>;
 }

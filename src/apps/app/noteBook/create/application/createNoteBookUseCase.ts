@@ -9,12 +9,12 @@ export class CreateNoteBookUseCase {
   constructor(
     private createNotebook: ICreateNoteBookRepository,
     private userFind: IFindUserRepository,
-    private validkey: IGuardAPP
+    private guardAppJwt: IGuardAPP
   ) {}
 
   async handle(params: ICreateNoteBookDto): Promise<Notebook> {
     try {
-      const userUuid = await this.validkey.getDecodedKey(params.key);
+      const userUuid = await this.guardAppJwt.getDecodedKey(params.key);
       await this.validateExistence(userUuid);
       const notebook = new Notebook({ title: params.title, userUuid, created: new Date() });
       await this.createNotebook.create(notebook);

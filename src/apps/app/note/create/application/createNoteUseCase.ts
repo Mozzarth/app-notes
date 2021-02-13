@@ -4,25 +4,25 @@ import { ICreateNoteRepository } from '../domain/createNoteRepository';
 import { Uuid } from '../../../shared/domain/value-object/Uuid';
 import { IGuardAPP } from '../../../shared/domain/IGuardApp';
 import { ICreateNoteDto } from './createNoteDto';
-import { Note } from '../domain/note';
+import { Note } from '../../shared/domain/note';
 
 export class CreateNoteUseCase {
   constructor(
     private createNote: ICreateNoteRepository,
     private userFind: IFindUserRepository,
     private notebookFind: IFindNoteBookRepository,
-    private validkey: IGuardAPP
+    private guardAppJwt: IGuardAPP
   ) {}
 
   async handle(params: ICreateNoteDto) {
     try {
-      const userUuid = await this.validkey.getDecodedKey(params.key);
+      const userUuid = await this.guardAppJwt.getDecodedKey(params.key);
       const idNotebook = new Uuid(params.idNotebook);
 
       const validations = [this.validateExistenceUser(userUuid), this.validExistenceNotebookUser(userUuid, idNotebook)];
       await Promise.all(validations);
-      const note = new Note({ note: params.note, created: new Date() });
-      return this.createNote.create(note, idNotebook);
+      const note = new Note({ note: params.note, created: new Date(), idNotebook });
+      return this.createNote.create(note);
     } catch (error) {
       throw error;
     }
