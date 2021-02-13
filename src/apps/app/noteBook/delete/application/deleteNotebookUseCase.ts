@@ -8,12 +8,12 @@ export class DeleteNotebookUseCase {
   constructor(
     private deleteNotebook: IDeleteNotebookRepository,
     private findNotebook: IFindNoteBookRepository,
-    private validkey: IGuardAPP
+    private guardAppJwt: IGuardAPP
   ) {}
 
   async handle(params: IDeleteNotebookDto): Promise<void> {
     try {
-      const idUser = await this.validkey.getDecodedKey(params.key);
+      const idUser = await this.guardAppJwt.getDecodedKey(params.key);
       const idNotebook = new Uuid(params.idNotebook);
       const notebook = this.findNotebook.byIdNotebook(idUser, idNotebook);
       if (notebook == undefined) {
