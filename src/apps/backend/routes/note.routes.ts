@@ -8,10 +8,14 @@ import { Router } from 'express';
 
 const noteRouter = Router();
 
-noteRouter.get('/notes/:idNotebook', findNoteByIdNotebook(), findNoteController.byIdNotebook.bind(findNoteController));
-noteRouter.get('/notes', findNoteAllMidd(), findNoteController.all.bind(findNoteController));
-noteRouter.get('/note/:idNote', findNoteByIdNote(), findNoteController.byIdNote.bind(findNoteController));
-noteRouter.post('/note', createNoteMidd(), createNoteController.create.bind(createNoteController));
-noteRouter.delete('/note/:idNote', deleteNoteMidd(), deleteNoteController.handle.bind(deleteNoteController));
+noteRouter.get(
+  '/notebook/:idNotebook',
+  findNoteByIdNotebook(),
+  findNoteController.byIdNotebook.bind(findNoteController)
+);
+noteRouter.get('/all', findNoteAllMidd(), findNoteController.all.bind(findNoteController));
+noteRouter.get('/:idNote', findNoteByIdNote(), findNoteController.byIdNote.bind(findNoteController));
+noteRouter.post('', createNoteMidd(), createNoteController.create.bind(createNoteController));
+noteRouter.delete('/:idNote', deleteNoteMidd(), deleteNoteController.handle.bind(deleteNoteController));
 
 export { noteRouter };
