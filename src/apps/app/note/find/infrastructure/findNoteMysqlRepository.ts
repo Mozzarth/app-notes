@@ -91,7 +91,7 @@ export class FindNoteMysqlRepository implements IFindNoteRepository {
   async all(idUser: Uuid, offset: number, limit: number): Promise<Note[]> {
     const connection = await sql.getConnection();
     try {
-      const parameters = [idUser.value, limit, offset];
+      const parameters = [idUser.value, Number(limit), Number(offset)];
       const statament = `
         select
             BIN_TO_UUID(n.idNote) as idNote,
