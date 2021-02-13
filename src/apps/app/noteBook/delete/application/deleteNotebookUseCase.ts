@@ -1,8 +1,8 @@
 import { IDeleteNotebookRepository } from '../domain/deleteNotebookRepository';
+import { IFindNoteBookRepository } from '../../find/domain/findNotebook';
 import { Uuid } from './../../../shared/domain/value-object/Uuid';
 import { IGuardAPP } from '../../../shared/domain/IGuardApp';
 import { IDeleteNotebookDto } from './deleteNotebookDto';
-import { IFindNoteBookRepository } from '../../find/domain/findNotebook';
 
 export class DeleteNotebookUseCase {
   constructor(
@@ -15,7 +15,7 @@ export class DeleteNotebookUseCase {
     try {
       const idUser = await this.guardAppJwt.getDecodedKey(params.key);
       const idNotebook = new Uuid(params.idNotebook);
-      const notebook = this.findNotebook.byIdNotebook(idUser, idNotebook);
+      const notebook = await this.findNotebook.byIdNotebook(idUser, idNotebook);
       if (notebook == undefined) {
         throw new Error('This Notebook not exists');
       }

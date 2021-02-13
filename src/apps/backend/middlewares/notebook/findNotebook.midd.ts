@@ -1,6 +1,9 @@
 import { validRouterExpressValidator } from '../shared';
-import { query } from 'express-validator';
+import { param, query } from 'express-validator';
 
-export function findByIdUserMid() {
+export function findAllMidd() {
   return [query('limit').optional().isInt(), query('page').optional().isInt(), validRouterExpressValidator];
+}
+export function findById() {
+  return [param('idNotebook').exists().isUUID(), validRouterExpressValidator];
 }

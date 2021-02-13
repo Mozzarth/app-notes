@@ -28,9 +28,9 @@ export class FindNoteBooksMysqlRepository implements IFindNoteBookRepository {
           const netebook = results.map(
             (value: any) =>
               new Notebook({
-                id: value.idNotebook,
+                id: new Uuid(value.idNotebook),
+                userUuid: new Uuid(value.idUser),
                 title: value.title,
-                userUuid: value.idUser,
                 created: value.created,
                 dateUpdate: value.dateUpdate,
               })
@@ -68,9 +68,9 @@ export class FindNoteBooksMysqlRepository implements IFindNoteBookRepository {
           const netebooks = results.map(
             (value: any) =>
               new Notebook({
-                id: value.idNotebook,
+                id: new Uuid(value.idNotebook),
+                userUuid: new Uuid(value.idUser),
                 title: value.title,
-                userUuid: value.idUser,
                 created: value.created,
                 dateUpdate: value.dateUpdate,
               })

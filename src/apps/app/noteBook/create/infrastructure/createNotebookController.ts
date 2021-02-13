@@ -13,10 +13,7 @@ class CreateNotebookController {
       const key = req.headers.authorization as string;
       const params: ICreateNoteBookDto = { title: req.body.title, key };
       const notebook = await this.createNotebook.handle(params);
-      return res.status(201).json({
-        idNotebook: notebook.idNotebook.value,
-        title: notebook.title,
-      });
+      return res.status(201).json(notebook);
     } catch (error) {
       next(error);
     }
