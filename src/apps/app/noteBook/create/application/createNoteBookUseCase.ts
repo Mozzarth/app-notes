@@ -2,7 +2,7 @@ import { IFindUserRepository } from '../../../user/findUser/domain/findUserRepos
 import { ICreateNoteBookRepository } from '../domain/createNoteBookRepository';
 import { Uuid } from '../../../shared/domain/value-object/Uuid';
 import { ICreateNoteBookDto } from './createNoteBookDto';
-import { Notebook } from '../domain/notebook';
+import { Notebook } from '../../shared/domain/notebook';
 import { IGuardAPP } from '../../../shared/domain/IGuardApp';
 
 export class CreateNoteBookUseCase {

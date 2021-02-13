@@ -1,7 +1,7 @@
 import sql from '../../../shared/infrastructure/persistence/sql/implements/connectionMySql';
 import { IFindNoteBookRepository } from '../domain/findNotebook';
 import { Uuid } from '../../../shared/domain/value-object/Uuid';
-import { Notebook } from '../../create/domain/notebook';
+import { Notebook } from '../../shared/domain/notebook';
 
 export class FindNoteBooksMysqlRepository implements IFindNoteBookRepository {
   async byIdNotebook(idUser: Uuid, idNotebook: Uuid): Promise<Notebook | undefined> {
