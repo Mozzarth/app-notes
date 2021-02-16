@@ -11,7 +11,8 @@ class CreateNoteController {
       const note = req.body.note;
       const idNotebook = req.body.idNotebook;
       const note_ = await this.createNoteUseCase.handle({ key, note, idNotebook });
-      return res.status(200).json(note_);
+      const response = note_.toPrimitives();
+      return res.status(200).json(response);
     } catch (error) {
       next(error);
     }
