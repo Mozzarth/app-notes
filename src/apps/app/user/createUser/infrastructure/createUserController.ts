@@ -11,7 +11,9 @@ class CreateUserController {
       const user: IUserDto = req.body;
       const host = `${req.protocol}://${req.get('host')}/api/user/active`;
       const userCreated = await this.createUser.execute(user, host);
-      return res.status(201).json(userCreated);
+      let response: any = userCreated.toPrimitives();
+      delete response.password;
+      return res.status(201).json(response);
     } catch (error) {
       next(error);
     }

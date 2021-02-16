@@ -15,4 +15,12 @@ export class User {
     this.active = params.active || false;
     this.password = params.password;
   }
+  toPrimitives() {
+    return {
+      id: this.id.value,
+      email: this.email.toString(),
+      password: this.password,
+      active: this.active,
+    };
+  }
 }
