@@ -1,7 +1,7 @@
 import { IFindUserRepository } from '../../../user/findUser/domain/findUserRepository';
 import { ICreateNoteBookRepository } from '../domain/createNotebookRepository';
 import { Uuid } from '../../../shared/domain/value-object/Uuid';
-import { ICreateNoteBookDto } from './createNotebookDto';
+import { ICreateNoteBookDto } from './createNotebook.dto';
 import { Notebook } from '../../shared/domain/notebook';
 import { IGuardAPP } from '../../../shared/domain/IGuardApp';
 
