@@ -15,7 +15,9 @@ export class FindUserMySqlRepository implements IFindUserRepository {
           `SELECT
             BIN_TO_UUID(idUSer) as idUSer,
             email,
-            password
+            password,
+            active,
+            dateActive
            FROM users 
            where idUser = UUID_TO_BIN(?);`,
           [id.value],
@@ -53,7 +55,8 @@ export class FindUserMySqlRepository implements IFindUserRepository {
             BIN_TO_UUID(idUSer) as idUSer,
             email,
             password,
-            active
+            active,
+            dateActive
             FROM users where email = ?;`,
           [email.toString()],
           (error, result: queryResponse[], field) => {
