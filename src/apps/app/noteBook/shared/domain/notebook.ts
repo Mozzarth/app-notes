@@ -16,4 +16,14 @@ export class Notebook {
     this.created = notebook.created;
     this.dateUpdate = notebook.dateUpdate;
   }
+
+  toPrimitives() {
+    return {
+      idUser: this.idUser.value,
+      idNotebook: this.idNotebook.value,
+      title: this.title,
+      created: this.created,
+      dateUpdate: this.dateUpdate,
+    };
+  }
 }

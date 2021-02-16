@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
+import { Notebook } from '../../shared/domain/notebook';
 import { findNotebooksUseCase } from '../application';
 import { FindNotebooksUseCase } from '../application/findNotebooksUseCase';
 
@@ -11,7 +12,8 @@ class FindNotebooksController {
       const page: number = req.query.page as any;
       const key = req.headers.authorization as string;
       const notebooks = await this.findUser.all({ key, limit, page });
-      return res.status(notebooks == undefined ? 204 : 200).send(notebooks);
+      const response = notebooks == undefined ? undefined : this.notebookResponse(notebooks);
+      return res.status(notebooks == undefined ? 204 : 200).json(response);
     } catch (error) {
       next(error);
     }
@@ -22,10 +24,19 @@ class FindNotebooksController {
       const key = req.headers.authorization as string;
       const idNotebook = req.params.idNotebook;
       const notebook = await this.findUser.byId({ key, idNotebook });
-      return res.status(notebook == undefined ? 204 : 200).send(notebook);
+      const response = notebook == undefined ? undefined : this.notebookResponse([notebook]);
+      return res.status(notebook == undefined ? 204 : 200).json(response);
     } catch (error) {
       next(error);
     }
+  }
+
+  private notebookResponse(notebooks: Notebook[]) {
+    return notebooks.map(notebook => {
+      const temp: any = notebook.toPrimitives();
+      delete temp.idUser;
+      return temp;
+    });
   }
 }
 
