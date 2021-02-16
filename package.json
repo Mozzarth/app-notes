@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "v12.18.4"
+  },
   "scripts": {
     "start": "npm run start:build && node dist/src/apps/backend/server.js",
     "start:build": "npm run build:clean && npm run build:tsc ",
@@ -49,7 +52,7 @@
     "type": "git",
     "url": "git+https://github.com/Mozzarth/Note.git"
   },
-  "author": "",
+  "author": "Mozzarth",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Mozzarth/Note/issues"
