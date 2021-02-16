@@ -16,4 +16,14 @@ export class Note {
     this.created = params.created;
     this.dateUpdate = params.dateUpdate;
   }
+
+  toPrimitives() {
+    return {
+      idNote: this.idNote.value,
+      idNotebook: this.idNotebook.value,
+      note: this.note,
+      created: this.created,
+      dateUpdate: this.dateUpdate,
+    };
+  }
 }
