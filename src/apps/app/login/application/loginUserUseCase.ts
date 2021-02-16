@@ -8,11 +8,14 @@ export class LoginUserUseCase {
   async handle(email: string, password: string) {
     try {
       const _email = new EmailAddres(email);
-      let _user = await this.findUser.byCredentials(_email, password || '');
-      if (_user == undefined) {
+      let user = await this.findUser.byCredentials(_email, password || '');
+      if (user == undefined) {
         throw new Error('User or credential invalid');
       }
-      return this.genereKey.getKey(_user);
+      if (!user.active) {
+        throw new Error('User dont active');
+      }
+      return this.genereKey.getKey(user);
     } catch (error) {
       throw error;
     }

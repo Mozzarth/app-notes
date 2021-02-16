@@ -4,7 +4,7 @@ import { IFindUserRepository } from '../domain/findUserRepository';
 import { Uuid } from '../../../shared/domain/value-object/Uuid';
 import { User } from '../../createUser/domain/User';
 
-type queryResponse = { idUSer: string; email: string; password: string } | undefined;
+type queryResponse = { idUSer: string; email: string; password: string; active: Buffer } | undefined;
 
 export class FindUserMySqlRepository implements IFindUserRepository {
   async byId(id: Uuid): Promise<User | undefined> {
@@ -30,6 +30,7 @@ export class FindUserMySqlRepository implements IFindUserRepository {
               id: new Uuid(result[0].idUSer),
               email: new EmailAddres(result[0].email),
               password: result[0].password,
+              active: result[0].active.lastIndexOf(1) !== -1,
             });
             res(user);
           }
@@ -51,7 +52,8 @@ export class FindUserMySqlRepository implements IFindUserRepository {
           `SELECT
             BIN_TO_UUID(idUSer) as idUSer,
             email,
-            password
+            password,
+            active
             FROM users where email = ?;`,
           [email.toString()],
           (error, result: queryResponse[], field) => {
@@ -65,6 +67,7 @@ export class FindUserMySqlRepository implements IFindUserRepository {
               id: new Uuid(result[0].idUSer),
               email: new EmailAddres(result[0].email),
               password: result[0].password,
+              active: result[0].active.lastIndexOf(1) !== -1,
             });
             res(user);
           }
@@ -85,10 +88,11 @@ export class FindUserMySqlRepository implements IFindUserRepository {
           `SELECT
             BIN_TO_UUID(idUSer) as idUSer,
             email,
-            password
+            password,
+            active,
+            dateActive
             FROM users where email = ?
-            AND password = ?
-            ;`,
+            AND password = ?;`,
           [email.toString(), password],
           (error, result: queryResponse[], field) => {
             if (error) {
@@ -101,6 +105,7 @@ export class FindUserMySqlRepository implements IFindUserRepository {
               id: new Uuid(result[0].idUSer),
               email: new EmailAddres(result[0].email),
               password: result[0].password,
+              active: result[0].active.lastIndexOf(1) !== -1,
             });
             res(user);
           }

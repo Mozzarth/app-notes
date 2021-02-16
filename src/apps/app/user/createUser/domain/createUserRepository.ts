@@ -1,5 +1,5 @@
-import { User } from "./User";
+import { User } from './User';
 
 export interface ICreateUserRepository {
-    handle(user: User): Promise<void>
+  handle(user: User): Promise<User>;
 }

@@ -1,5 +1,5 @@
 import { NodeMailerProvider } from '../../../notification/mail/infrastructure/nodeMailer';
-import { CreateUserNoticationMailer } from './notification/implements/createUserNotifier';
+import { CreateUserNoticationMailer } from '../infrastructure/createUserNotifier';
 import { FindUserMySqlRepository } from '../../findUser/infrastructure/findUserRepository';
 import { CreateUserMySqlRepository } from '../infrastructure/createUserMySqlRepository';
 import { CreateUserUseCase } from './createUserUseCase';

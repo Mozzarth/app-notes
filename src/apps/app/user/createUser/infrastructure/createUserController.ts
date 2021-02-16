@@ -1,7 +1,7 @@
-import { createUserUseCase } from '../application/createUserUseCase';
 import { CreateUserUseCase } from './../application/createUserUseCase';
-import { IUserDto } from '../application/userDto';
+import { createUserUseCase } from '../application/createUserUseCase';
 import { NextFunction, Request, Response } from 'express';
+import { IUserDto } from '../application/userDto';
 
 class CreateUserController {
   constructor(private createUser: CreateUserUseCase) {}
@@ -9,8 +9,9 @@ class CreateUserController {
   async handle(req: Request, res: Response, next: NextFunction) {
     try {
       const user: IUserDto = req.body;
-      await this.createUser.execute(user);
-      return res.status(201).send('User created');
+      const host = `${req.protocol}://${req.get('host')}/api/user/active`;
+      const userCreated = await this.createUser.execute(user, host);
+      return res.status(201).json(userCreated);
     } catch (error) {
       next(error);
     }

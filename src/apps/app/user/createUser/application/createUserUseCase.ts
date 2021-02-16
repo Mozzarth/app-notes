@@ -1,6 +1,6 @@
 import { FindUserMySqlRepository } from '../../findUser/infrastructure/findUserRepository';
 import { NodeMailerProvider } from '../../../notification/mail/infrastructure/nodeMailer';
-import { CreateUserNoticationMailer } from './notification/implements/createUserNotifier';
+import { CreateUserNoticationMailer } from '../infrastructure/createUserNotifier';
 import { CreateUserMySqlRepository } from '../infrastructure/createUserMySqlRepository';
 import { ICreateUserNotification } from '../domain/ICreateUserNotification';
 import { IFindUserRepository } from '../../findUser/domain/findUserRepository';
@@ -16,7 +16,7 @@ export class CreateUserUseCase {
     private notifier: ICreateUserNotification
   ) {}
 
-  async execute(user: IUserDto): Promise<void> {
+  async execute(user: IUserDto, host: string): Promise<User> {
     try {
       const _user = new User({
         email: new EmailAddres(user.email),
@@ -24,8 +24,8 @@ export class CreateUserUseCase {
       });
       await this.validateExistence(_user.email.toString());
       await this.createUser.handle(_user);
-      await this.notifier.send(_user.email);
-      return;
+      await this.notifier.send(_user.email, `${host}`, _user);
+      return new User({ email: _user.email, password: '', id: _user.id });
     } catch (error) {
       throw error;
     }
