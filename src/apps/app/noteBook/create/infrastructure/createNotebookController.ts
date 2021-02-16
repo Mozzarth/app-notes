@@ -1,5 +1,5 @@
-import { CreateNoteBookUseCase } from '../application/createNoteBookUseCase';
-import { ICreateNoteBookDto } from '../application/createNoteBookDto';
+import { CreateNoteBookUseCase } from '../application/createNotebookUseCase';
+import { ICreateNoteBookDto } from '../application/createNotebook.dto';
 import { NextFunction, Request, Response } from 'express';
 import { createNotebook } from '../application';
 

@@ -1,7 +1,7 @@
 import { FindUserMySqlRepository } from '../../../user/findUser/infrastructure/findUserRepository';
 import { CreateNotebookMysqlRepository } from '../infrastructure/createNotebookMysqlRepository';
 import { GuardAppJwt } from '../../../shared/infrastructure/guard/guardJwt.midd';
-import { CreateNoteBookUseCase } from './createNoteBookUseCase';
+import { CreateNoteBookUseCase } from './createNotebookUseCase';
 
 const decodedKey = new GuardAppJwt();
 const userFind = new FindUserMySqlRepository();
