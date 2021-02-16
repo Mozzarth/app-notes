@@ -1,5 +1,5 @@
 {
-  "name": "notedev",
+  "name": "simple-note",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,13 +8,14 @@
     "npm": "6.x"
   },
   "scripts": {
-    "start": "npm run start:build && node dist/src/apps/backend/server.js",
-    "start:build": "npm run build:clean && npm run build:tsc ",
+    "start": "npm run build && node dist/src/apps/backend/server.js",
     "dev": "nodemon -L",
-    "build": "npm run build:clean && npm run build:tsc && npm run build:dist",
+    "build": "npm run build:clean && npm run build:tsc && npm run build:cp",
+    "build:dev": "npm run build && npm run build:cp:dev",
     "build:clean": "rm -r dist; exit 0",
     "build:tsc": "tsc -p tsconfig.prod.json",
-    "build:dist": "copy 'src/**/*.{json,yaml,html,png,env}' dist/src",
+    "build:cp": "copy 'src/**/*.{json,yaml,html,png}' dist/src",
+    "build:cp:dev": "copy '.env' dist/src",
     "heroku-postbuild": "npm start"
   },
   "devDependencies": {
@@ -26,6 +27,7 @@
     "@types/mysql": "^2.15.17",
     "@types/nodemailer": "^6.4.0",
     "@types/uuid": "^8.3.0",
+    "copy": "^0.3.2",
     "cross-env": "^7.0.3",
     "dotenv": "^8.2.0",
     "husky": "^4.3.8",
