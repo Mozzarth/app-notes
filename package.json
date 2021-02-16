@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "npm run start:build && node dist/src/apps/backend/server.js",
+    "start:build": "npm run build:clean && npm run build:tsc ",
     "dev": "nodemon -L",
     "build": "npm run build:clean && npm run build:tsc && npm run build:dist",
     "build:clean": "rm -r dist; exit 0",

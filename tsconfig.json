@@ -10,7 +10,8 @@
     "noEmit": false,
     "resolveJsonModule": true,
     "noUnusedLocals": true,
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "rootDir": "."
   },
   "include": ["src/**/**.ts"],
   "exclude": ["node_modules"]
