@@ -1,7 +1,7 @@
-import { FindNoteMysqlRepository } from './../../find/infrastructure/findNoteMysqlRepository';
-import { DeleteNoteMysqlRepository } from './../infrastructure/deleteNoteMySqlRepository';
+import { FindNoteMysqlRepository } from '../../find/infrastructure/note-find-mysql.repository';
+import { DeleteNoteMysqlRepository } from '../infrastructure/note-delete-myslq.repository';
 import { GuardAppJwt } from '../../../shared/infrastructure/guard/guardJwt.midd';
-import { DeleteNoteUseCase } from './deleteNoteUseCase';
+import { DeleteNoteUseCase } from './note-delete.usecase';
 
 const guardJwt = new GuardAppJwt();
 const findNote = new FindNoteMysqlRepository();

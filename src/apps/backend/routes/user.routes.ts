@@ -1,7 +1,7 @@
-import { activeUserController } from '../../app/user/activeUser/infrastructure/activeUserController';
-import { createUserController } from '../../app/user/createUser/infrastructure/createUserController';
-import { createUserMidd } from '../middlewares/user/createUser.midd';
-import { activeUserMidd } from '../middlewares/user/activeUser.midd';
+import { activeUserController } from '../../app/user/active/infrastructure/user-active.controller';
+import { createUserController } from '../../app/user/create/infrastructure/user-create.controller';
+import { createUserMidd } from '../middlewares/user/user-create.midd';
+import { activeUserMidd } from '../middlewares/user/user-active.midd';
 import { Router } from 'express';
 
 const userRouter = Router();

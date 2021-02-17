@@ -1,9 +1,9 @@
-import { findNoteAllMidd, findNoteByIdNote, findNoteByIdNotebook } from '../middlewares/note/findNote.midd';
-import { createNoteController } from '../../app/note/create/infrastructure/createNoteController';
-import { deleteNoteController } from '../../app/note/delete/infrastructure/deleteNoteController';
-import { findNoteController } from '../../app/note/find/infrastructure/findNoteController';
-import { createNoteMidd } from '../middlewares/note/createNote.midd';
-import { deleteNoteMidd } from '../middlewares/note/deleteNote.midd';
+import { findNoteAllMidd, findNoteByIdNote, findNoteByIdNotebook } from '../middlewares/note/note-find.midd';
+import { createNoteController } from '../../app/note/create/infrastructure/note-create.controller';
+import { deleteNoteController } from '../../app/note/delete/infrastructure/note-delete.controller';
+import { findNoteController } from '../../app/note/find/infrastructure/note-find.controller';
+import { createNoteMidd } from '../middlewares/note/note-create.midd';
+import { deleteNoteMidd } from '../middlewares/note/note-delete.midd';
 import { Router } from 'express';
 
 const noteRouter = Router();

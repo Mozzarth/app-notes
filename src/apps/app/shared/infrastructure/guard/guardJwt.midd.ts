@@ -1,6 +1,6 @@
-import { User } from '../../../user/createUser/domain/User';
+import { User } from '../../../user/create/domain/user';
 import { Uuid } from '../../domain/value-object/Uuid';
-import { IGuardAPP } from '../../domain/IGuardApp';
+import { IGuardAPP } from '../../domain/IGuard-application';
 import jwt from 'jsonwebtoken';
 
 const secret: string = process.env.NODE_JWT_SEED || 'sin semilla';

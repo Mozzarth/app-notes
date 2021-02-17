@@ -1,4 +1,4 @@
-import { loginController } from '../../app/login/infrastructure/loginUserController';
+import { loginController } from '../../app/login/infrastructure/user-login.controller';
 import { loginMidd } from '../middlewares/login/login.midd';
 import { Router } from 'express';
 

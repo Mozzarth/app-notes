@@ -1,8 +1,8 @@
-import { FindNoteBooksMysqlRepository } from '../../../notebook/find/infrastructure/findNotebooksMysqlRepository';
-import { FindUserMySqlRepository } from '../../../user/findUser/infrastructure/findUserRepository';
-import { CreateNoteMysqlRepository } from '../infrastructure/createNoteMysqlRepository';
+import { FindNoteBooksMysqlRepository } from '../../../notebook/find/infrastructure/notebook-find-mysql.repository';
+import { FindUserMySqlRepository } from '../../../user/find/infrastructure/user-find.repository';
+import { CreateNoteMysqlRepository } from '../infrastructure/note-create-mysql.repository';
 import { GuardAppJwt } from '../../../shared/infrastructure/guard/guardJwt.midd';
-import { CreateNoteUseCase } from './createNoteUseCase';
+import { CreateNoteUseCase } from './note-create.usecase';
 
 const createNoteRepository = new CreateNoteMysqlRepository();
 const userFindRepository = new FindUserMySqlRepository();

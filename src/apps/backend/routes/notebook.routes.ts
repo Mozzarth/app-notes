@@ -1,9 +1,9 @@
-import { deleteNotebookController } from '../../app/notebook/delete/infrastructure/deleteNotebookController';
-import { createNotebookController } from '../../app/notebook/create/infrastructure/createNotebookController';
-import { findNotebookController } from '../../app/notebook/find/infrastructure/findNotebooksController';
-import { findAllMidd, findById } from '../middlewares/notebook/findNotebook.midd';
-import { createNotebookMid } from '../middlewares/notebook/createNotebook.midd';
-import { deleteNotebook } from '../middlewares/notebook/deleteNotebook.midd';
+import { deleteNotebookController } from '../../app/notebook/delete/infrastructure/notebook-delete.controller';
+import { createNotebookController } from '../../app/notebook/create/infrastructure/notebook-create.controller';
+import { findNotebookController } from '../../app/notebook/find/infrastructure/notebook-find.controller';
+import { findAllMidd, findById } from '../middlewares/notebook/notebook-find.midd';
+import { createNotebookMid } from '../middlewares/notebook/notebook-create.midd';
+import { deleteNotebook } from '../middlewares/notebook/notebook-delete.midd';
 import { Router } from 'express';
 
 const notebookRouter = Router();

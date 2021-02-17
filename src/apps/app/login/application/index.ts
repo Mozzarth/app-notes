@@ -1,6 +1,6 @@
-import { FindUserMySqlRepository } from '../../user/findUser/infrastructure/findUserRepository';
+import { FindUserMySqlRepository } from '../../user/find/infrastructure/user-find.repository';
 import { GuardAppJwt } from '../../shared/infrastructure/guard/guardJwt.midd';
-import { LoginUserUseCase } from './loginUserUseCase';
+import { LoginUserUseCase } from './user-login.usecase';
 
 const findUser = new FindUserMySqlRepository();
 const generateKey = new GuardAppJwt();

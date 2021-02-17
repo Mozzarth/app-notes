@@ -1,6 +1,6 @@
 import { GuardAppJwt } from '../../../shared/infrastructure/guard/guardJwt.midd';
-import { FindNoteMysqlRepository } from './../infrastructure/findNoteMysqlRepository';
-import { FindNoteUseCase } from './findNoteUseCase';
+import { FindNoteMysqlRepository } from '../infrastructure/note-find-mysql.repository';
+import { FindNoteUseCase } from './note-find.usecase';
 
 const findNoteRepo = new FindNoteMysqlRepository();
 const decodedKey = new GuardAppJwt();
