@@ -1,1 +1,1 @@
-web:npm start 
+web:dist/index.js
