@@ -4,5 +4,5 @@
   "name": "desarrollo",
   "env": { "NODE_ENV": "dev" },
   "ignore": [".git", "node_modules/**/node_modules"],
-  "exec": "ts-node-dev --cls ./src/apps/backend/server.ts"
+  "exec": "ts-node-dev --cls ./src/index.ts"
 }

@@ -2,13 +2,13 @@
   "name": "simple-note",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "engines": {
     "node": "12.18.x",
     "npm": "6.x"
   },
   "scripts": {
-    "start": "npm run build && node dist/src/apps/backend/server.js",
+    "start": "npm run build && node dist/src",
     "dev": "nodemon -L",
     "build": "npm run build:clean && npm run build:tsc && npm run build:cp",
     "build:dev": "npm run build && npm run build:cp:dev",
