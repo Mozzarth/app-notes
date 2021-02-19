@@ -1,7 +1,7 @@
 import { CONFIG } from './config/config';
 import app from './app';
 
-console.log({ CONFIG });
-app.listen(CONFIG.SERVER_PORT, () => {
-  console.log(`App is running at http://localhost:${CONFIG.SERVER_PORT} in ${process.env.NODE_ENV} mode`);
+app.set('port', process.env.PORT || 3000);
+app.listen(app.get('port'), () => {
+  console.log(`App is running at http://localhost:${app.get('port')} in ${CONFIG.ENV_APP} mode`);
 });
