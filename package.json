@@ -15,8 +15,7 @@
     "build:clean": "rm -r dist; exit 0",
     "build:tsc": "tsc -p tsconfig.prod.json",
     "build:cp": "copy 'src/**/*.{json,yaml,html,png}' dist/src",
-    "build:cp:dev": "copy '.env' dist/src",
-    "heroku-postbuild": "npm build"
+    "build:cp:dev": "copy '.env' dist/src"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
