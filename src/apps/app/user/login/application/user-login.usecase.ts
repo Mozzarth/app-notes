@@ -1,6 +1,6 @@
-import { IFindUserRepository } from '../../user/find/domain/user-find.repository';
-import { EmailAddres } from '../../shared/domain/value-object/EmailAdress';
-import { IGuardAPP } from '../../shared/domain/IGuard-application';
+import { IFindUserRepository } from '../../find/domain/user-find.repository';
+import { EmailAddres } from '../../../shared/domain/value-object/EmailAdress';
+import { IGuardAPP } from '../../../shared/domain/IGuard-application';
 
 export class LoginUserUseCase {
   constructor(private findUser: IFindUserRepository, private genereKey: IGuardAPP) {}

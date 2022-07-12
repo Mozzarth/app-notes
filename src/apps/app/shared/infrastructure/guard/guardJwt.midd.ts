@@ -1,11 +1,10 @@
-import { User } from '../../../user/create/domain/user';
 import { Uuid } from '../../domain/value-object/Uuid';
-import { IGuardAPP } from '../../domain/IGuard-application';
+import { User } from '../../../user/user';
 import jwt from 'jsonwebtoken';
 
 const secret: string = process.env.NODE_JWT_SEED || 'sin semilla';
 
-export class GuardAppJwt implements IGuardAPP {
+export class GuardAppJwt  {
   getKey(user: User): Promise<string> {
     try {
       const unMin = 60 * 60;

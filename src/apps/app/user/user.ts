@@ -1,5 +1,5 @@
-import { EmailAddres } from '../../../shared/domain/value-object/EmailAdress';
-import { Uuid } from '../../../shared/domain/value-object/Uuid';
+import { EmailAddres } from '../shared/domain/value-object/EmailAdress';
+import { Uuid } from '../shared/domain/value-object/Uuid';
 
 type parameters = { id?: Uuid; email: EmailAddres; password: string; active?: boolean };
 

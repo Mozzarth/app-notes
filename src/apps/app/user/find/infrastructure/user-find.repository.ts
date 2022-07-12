@@ -2,7 +2,7 @@ import sql from '../../../shared/infrastructure/persistence/sql/implements/conne
 import { EmailAddres } from '../../../shared/domain/value-object/EmailAdress';
 import { IFindUserRepository } from '../domain/user-find.repository';
 import { Uuid } from '../../../shared/domain/value-object/Uuid';
-import { User } from '../../create/domain/user';
+import { User } from '../../user';
 
 type queryResponse = { idUSer: string; email: string; password: string; active: Buffer } | undefined;
 

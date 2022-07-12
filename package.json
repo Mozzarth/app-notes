@@ -1,5 +1,5 @@
 {
-  "name": "simple-note",
+  "name": "auth",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -45,7 +45,6 @@
     "helmet": "^4.4.1",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
-    "mysql": "^2.18.1",
     "nodemailer": "^6.4.17",
     "uuid": "^8.3.2"
   },

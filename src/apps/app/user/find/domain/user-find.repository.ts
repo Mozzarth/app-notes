@@ -1,5 +1,5 @@
 import { EmailAddres } from '../../../shared/domain/value-object/EmailAdress';
-import { User } from '../../create/domain/user';
+import { User } from '../../user';
 import { Uuid } from '../../../shared/domain/value-object/Uuid';
 
 export interface IFindUserRepository {

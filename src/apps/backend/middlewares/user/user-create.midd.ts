@@ -1,5 +1,5 @@
-import { body } from 'express-validator';
 import { validRouterExpressValidator } from '../shared';
+import { body } from 'express-validator';
 
 function createUserMidd() {
   return [
